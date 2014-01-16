@@ -40,21 +40,22 @@ The widget is a payment page hosted by Paymentwall that embeds the entire paymen
 var PaymentwallProduct = require('./lib/Paymentwall/Product.js');
 
 widget.initialize(
-  'user40012',
-  'p1',
-  [
+  'user40012',      // id of the end-user who's making the payment
+  'p1',             // widget code, e.g. p1; can be picked in the Widgets section of your merchant account 
+  [                 // product details for Flexible Widget Call. 
+                    // Leave empty if product selection happens on Paymentwall's side
     PaymentwallProduct.initialize(
-      'product301',
-      9.99,
-      'USD',
-      'Gold Membership',
-      PaymentwallProduct.TYPE_SUBSCRIPTION,
-      1,
-      PaymentwallProduct.PERIOD_TYPE_MONTH,
-      true
+      'product301',                           // id of the product in your system  
+      9.99,                                   // price
+      'USD',                                  // currency code
+      'Gold Membership',                      // product name
+      PaymentwallProduct.TYPE_SUBSCRIPTION,   // this is a time-based product
+      1,                                      // duration is 1
+      PaymentwallProduct.PERIOD_TYPE_MONTH,   //              month
+      true                                    // this is a recurring product
     )
   ],
-  {'email': 'user@hostname.com'}
+  {'email': 'user@hostname.com'}              // additional parameters. for full list check API docs
 );
 console.log(widget.getHtmlCode());
 </code></pre>
