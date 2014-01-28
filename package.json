@@ -1,5 +1,5 @@
 {
-  "name": "paymentwall-node",
+  "name": "paymentwall",
   "version": "1.0.0",
   "author": "Paymentwall Team <devsupport@paymentwall.com>",
   "description": "Paymentwall Node.js Library",

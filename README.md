@@ -13,7 +13,7 @@ To open your merchant account and set up an application, you can [sign up here](
 #Installation
 To install the library in your environment, simple run the following command:
 
-  <code>npm install paymentwall-node</code>
+  <code>npm install paymentwall</code>
 
 Then use a code sample below.
 
