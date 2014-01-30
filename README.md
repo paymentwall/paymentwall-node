@@ -22,7 +22,7 @@ Then use a code sample below.
 ##Digital Goods API
 
 ####Initializing Paymentwall
-<pre><code>var Paymentwall = require('paymentwall-node');
+<pre><code>var Paymentwall = require('paymentwall');
 
 Paymentwall.configure(
   Paymentwall.Base.API_GOODS,
