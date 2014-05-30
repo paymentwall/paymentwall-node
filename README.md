@@ -78,7 +78,7 @@ if (pingback.validate()) {
   console.log('OK'); // Paymentwall expects the string OK in response, otherwise the pingback will be resent
 } else {
   console.log(pingback.getErrorSummary());
-}</code></pre>
+}
 ```
 
 ## Virtual Currency API
