@@ -11,9 +11,11 @@ To use Paymentwall, all you need to do is to sign up for a Paymentwall Merchant 
 To open your merchant account and set up an application, you can [sign up here](http://paymentwall.com/signup/merchant?source=gh-node).
 
 #Installation
-To install the library in your environment, simple run the following command:
+To install the library in your environment, simply run the following command:
 
-  <code>npm install paymentwall</code>
+```
+npm install paymentwall
+```
 
 Then use a code sample below.
 
@@ -21,22 +23,25 @@ Then use a code sample below.
 
 ##Digital Goods API
 
-####Initializing Paymentwall
-<pre><code>var Paymentwall = require('paymentwall');
+[Web API details](http://www.paymentwall.com/en/documentation/Digital-Goods-API/710#paymentwall_widget_call_flexible_widget_call)
 
+####Initializing Paymentwall
+
+```javascript
+var Paymentwall = require('paymentwall');
 Paymentwall.configure(
   Paymentwall.Base.API_GOODS,
   'YOUR_APPLICATION_KEY',
   'YOUR_SECRET_KEY'
 );
-</code></pre>
+```
 
 ####Widget Call
-[Web API details](http://www.paymentwall.com/en/documentation/Digital-Goods-API/710#paymentwall_widget_call_flexible_widget_call)
 
-The widget is a payment page hosted by Paymentwall that embeds the entire payment flow: selecting the payment method, completing the billing details, and providing customer support via the Help section. You can redirect the users to this page or embed it via iframe. Below is an example that renders an iframe with Paymentwall Widget.
+The widget is a payment page hosted by Paymentwall that embeds the entire payment flow: selecting the payment method, completing the billing details, and providing customer support via the Help section. You can redirect the users to this page or embed it via iframe. The sample code below renders an iframe with Paymentwall Widget.
 
-<pre><code>var widget = new Paymentwall.Widget(
+```javascript
+var widget = new Paymentwall.Widget(
   'user40012',      // id of the end-user who's making the payment
   'p1',             // widget code, e.g. p1; can be picked in the Widgets section of your merchant account 
   [                 // product details for Flexible Widget Call. 
@@ -55,12 +60,130 @@ The widget is a payment page hosted by Paymentwall that embeds the entire paymen
   {'email': 'user@hostname.com'}              // additional parameters. for full list check API docs
 );
 console.log(widget.getHtmlCode());
-</code></pre>
+```
 
 ####Pingback Processing
 
 The Pingback is a webhook notifying about a payment being made. Pingbacks are sent via HTTP/HTTPS to your servers. To process pingbacks use the following code:
-<pre><code>var pingback = new Paymentwall.Pingback(queryData, ipAddress);
+
+```javascript
+var pingback = new Paymentwall.Pingback(queryData, ipAddress);
+if (pingback.validate()) {
+  var productId = pingback.getProduct().getId();
+  if (pingback.isDeliverable()) {
+    // deliver the product
+  } else if (pingback.isCancelable()) {
+    // withdraw the product
+  } 
+  console.log('OK'); // Paymentwall expects the string OK in response, otherwise the pingback will be resent
+} else {
+  console.log(pingback.getErrorSummary());
+}</code></pre>
+```
+
+## Virtual Currency API
+
+[Web API Details](https://www.paymentwall.com/en/documentation/Virtual-Currency-API/711)
+
+#### Initializing Paymentwall
+
+```javascript
+var Paymentwall = require('paymentwall');
+
+Paymentwall.configure(
+  Paymentwall.Base.API_GOODS,
+  'YOUR_APPLICATION_KEY',
+  'YOUR_SECRET_KEY'
+);
+```
+
+#### Widget Call
+
+The widget is a payment page hosted by Paymentwall that embeds the entire payment flow: selecting the payment method, completing the billing details, and providing customer support via the Help section. You can redirect the users to this page or embed it via iframe. The sample code below renders an iframe with Paymentwall Widget.
+
+```javascript
+var Paymentwall = require('paymentwall');
+Paymentwall.configure(
+  Paymentwall.Base.API_VC,
+  'YOUR_APPLICATION_KEY',
+  'YOUR_SECRET_KEY'
+);
+
+var widget = new Paymentwall.Widget(
+  'user40012',
+  'p10',
+  [],
+  {'email': 'user@hostname.com'}
+);
+console.log(widget.getHtmlCode());
+```
+
+#### Pingback Processing
+
+The Pingback is a webhook notifying about a payment being made. Pingbacks are sent via HTTP/HTTPS to your servers. To process pingbacks use the following code:
+
+```javascript
+var pingback = new Paymentwall.Pingback(queryData, ipAddress);
+
+if (pingback.validate()) {
+  var virtualCurrency = pingback.getVirtualCurrencyAmount();
+  if (pingback.isDeliverable()) {
+    // deliver the virtual currency
+  } else if (pingback.isCancelable()) {
+    // withdraw the virtual currency
+  } 
+  console.log('OK'); // Paymentwall expects the string OK in response, otherwise the pingback will be resent
+} else {
+  console.log(pingback.getErrorSummary());
+}
+```
+
+## Cart API
+
+[Web API Details](https://www.paymentwall.com/en/documentation/Shopping-Cart-API/1098)
+
+#### Initializing Paymentwall
+
+```javascript
+var Paymentwall = require('paymentwall');
+
+Paymentwall.configure(
+  Paymentwall.Base.API_GOODS,
+  'YOUR_APPLICATION_KEY',
+  'YOUR_SECRET_KEY'
+);
+```
+
+#### Widget Call
+
+The widget is a payment page hosted by Paymentwall that embeds the entire payment flow: selecting the payment method, completing the billing details, and providing customer support via the Help section. You can redirect the users to this page or embed it via iframe. The sample code below renders an iframe with Paymentwall Widget.
+
+```javascript
+var Paymentwall = require('paymentwall');
+Paymentwall.configure(
+  Paymentwall.Base.API_CART,
+  'YOUR_APPLICATION_KEY',
+  'YOUR_SECRET_KEY'
+);
+
+var widget = new Paymentwall.Widget(
+  'user40012',
+  'p10',
+  [
+    new Paymentwall.Product('product301', 3.33, 'EUR'), // first product in cart
+    new Paymentwall.Product('product607', 7.77, 'EUR')  // second product in cart
+  ],
+  {'email': 'user@hostname.com'}
+);
+console.log(widget.getHtmlCode());
+```
+
+#### Pingback Processing
+
+The Pingback is a webhook notifying about a payment being made. Pingbacks are sent via HTTP/HTTPS to your servers. To process pingbacks use the following code:
+
+```javascript
+var pingback = new Paymentwall.Pingback(queryData, ipAddress);
 
 if (pingback.validate()) {
   var productId = pingback.getProduct().getId();
@@ -69,7 +192,8 @@ if (pingback.validate()) {
   } else if (pingback.isCancelable()) {
     // withdraw the product
   } 
-  console.log('OK'); // Paymentwall expects response to be OK, otherwise the pingback will be resent
+  console.log('OK'); // Paymentwall expects the string OK in response, otherwise the pingback will be resent
 } else {
   console.log(pingback.getErrorSummary());
-}</code></pre>
+}
+```
