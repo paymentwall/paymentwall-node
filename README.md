@@ -91,7 +91,7 @@ if (pingback.validate()) {
 var Paymentwall = require('paymentwall');
 
 Paymentwall.configure(
-  Paymentwall.Base.API_GOODS,
+  Paymentwall.Base.API_VC,
   'YOUR_APPLICATION_KEY',
   'YOUR_SECRET_KEY'
 );
@@ -148,7 +148,7 @@ if (pingback.validate()) {
 var Paymentwall = require('paymentwall');
 
 Paymentwall.configure(
-  Paymentwall.Base.API_GOODS,
+  Paymentwall.Base.API_CART,
   'YOUR_APPLICATION_KEY',
   'YOUR_SECRET_KEY'
 );
