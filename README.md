@@ -102,13 +102,6 @@ Paymentwall.configure(
 The widget is a payment page hosted by Paymentwall that embeds the entire payment flow: selecting the payment method, completing the billing details, and providing customer support via the Help section. You can redirect the users to this page or embed it via iframe. The sample code below renders an iframe with Paymentwall Widget.
 
 ```javascript
-var Paymentwall = require('paymentwall');
-Paymentwall.configure(
-  Paymentwall.Base.API_VC,
-  'YOUR_APPLICATION_KEY',
-  'YOUR_SECRET_KEY'
-);
-
 var widget = new Paymentwall.Widget(
   'user40012',
   'p10',
@@ -159,13 +152,6 @@ Paymentwall.configure(
 The widget is a payment page hosted by Paymentwall that embeds the entire payment flow: selecting the payment method, completing the billing details, and providing customer support via the Help section. You can redirect the users to this page or embed it via iframe. The sample code below renders an iframe with Paymentwall Widget.
 
 ```javascript
-var Paymentwall = require('paymentwall');
-Paymentwall.configure(
-  Paymentwall.Base.API_CART,
-  'YOUR_APPLICATION_KEY',
-  'YOUR_SECRET_KEY'
-);
-
 var widget = new Paymentwall.Widget(
   'user40012',
   'p10',
