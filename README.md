@@ -99,8 +99,6 @@ Paymentwall.configure(
 
 #### Widget Call
 
-The widget is a payment page hosted by Paymentwall that embeds the entire payment flow: selecting the payment method, completing the billing details, and providing customer support via the Help section. You can redirect the users to this page or embed it via iframe. The sample code below renders an iframe with Paymentwall Widget.
-
 ```javascript
 var widget = new Paymentwall.Widget(
   'user40012',
@@ -112,8 +110,6 @@ console.log(widget.getHtmlCode());
 ```
 
 #### Pingback Processing
-
-The Pingback is a webhook notifying about a payment being made. Pingbacks are sent via HTTP/HTTPS to your servers. To process pingbacks use the following code:
 
 ```javascript
 var pingback = new Paymentwall.Pingback(queryData, ipAddress);
@@ -149,8 +145,6 @@ Paymentwall.configure(
 
 #### Widget Call
 
-The widget is a payment page hosted by Paymentwall that embeds the entire payment flow: selecting the payment method, completing the billing details, and providing customer support via the Help section. You can redirect the users to this page or embed it via iframe. The sample code below renders an iframe with Paymentwall Widget.
-
 ```javascript
 var widget = new Paymentwall.Widget(
   'user40012',
@@ -165,8 +159,6 @@ console.log(widget.getHtmlCode());
 ```
 
 #### Pingback Processing
-
-The Pingback is a webhook notifying about a payment being made. Pingbacks are sent via HTTP/HTTPS to your servers. To process pingbacks use the following code:
 
 ```javascript
 var pingback = new Paymentwall.Pingback(queryData, ipAddress);
