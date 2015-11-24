@@ -22,6 +22,10 @@
     "ewallet",
     "monetization"
   ],
+  "devDependencies": {
+    "cucumber": "*",
+    "gherkin": "*"
+  },
   "license": "MIT",
   "homepage": "http://www.paymentwall.com"
 }
