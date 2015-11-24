@@ -8,5 +8,3 @@ module.exports.configure = function(apiType, appKey, secretKey) {
 	module.exports.Base.prototype.appKey = appKey;
 	module.exports.Base.prototype.secretKey = secretKey;
 };
-
-// Test
