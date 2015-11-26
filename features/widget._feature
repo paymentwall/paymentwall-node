@@ -96,7 +96,6 @@ Scenario: check Virtual Currency payment widget signature v2 with correct secret
   And Widget HTML content should not contain "It looks like you're not authorized to view this content."
   And Widget HTML content should contain "Select payment method"
 
-
 Scenario: check Virtual Currency widget signature v2 with wrong secret key
   Given Public key "c10c60d07a2f4549a17902d683eb0b11"
   And Secret key "000"
@@ -105,3 +104,4 @@ Scenario: check Virtual Currency widget signature v2 with wrong secret key
   When Widget is constructed 
   And Widget HTML content is loaded
   Then Widget HTML content should contain "It looks like you're not authorized to view this content."
+  
