@@ -175,3 +175,170 @@ if (pingback.validate()) {
   console.log(pingback.getErrorSummary());
 }
 ```
+##Brick API
+
+[Web API details](https://www.paymentwall.com/en/documentation/Brick/2968)
+
+####Initializing Paymentwall
+
+```javascript
+var Paymentwall = require('paymentwall');
+Paymentwall.configure(
+  Paymentwall.Base.API_GOODS,
+  'YOUR_APPLICATION_KEY',
+  'YOUR_SECRET_KEY'
+);
+```
+
+####Create a one-time token
+
+```javascript
+var onetimetoken = new Paymentwall.Onetimetoken(
+4000000000000002,// Card number, digits only
+01,// Expiration month, 2 digits from 01 to 12
+2017,// Expiration year, 4 digits
+222// CVC/CVV, 3-4 digits
+);
+
+onetimetoken.createOnetimetoken(function(onetimetoken_response){
+// get the parameter in response
+console.log('onetimetoken='+onetimetoken_response.token);
+});
+```
+
+####Charge
+
+```javascript
+var charge = new Paymentwall.Charge(
+0.5, //price
+'USD', //currency code
+'description', //description of the product
+'useremail@example.com', // user's email which can be gotten by req.body.email
+'fingerprint', // fingerprint which can be gotten by req.body.brick_fingerprint
+// if generated via backend please use this Charge in the callback function of createOnetimetoken
+//onetimetoken_response.token,
+// if generated via brick.js
+req.body.brick_token, //one-time token
+{'custom[User_prfile_API]':'Value'} //custom parameters
+);
+
+charge.createCharge(function(Charge_response){
+  console.log('response of Charge ='+Charge_response);
+});
+```
+
+####Charge Details
+
+```javascript
+//get the charge details through chargeid
+var charge = new Paymentwall.Charge();
+
+charge.otherOperation(chargeid,'detail',function(data){
+  console.log('detail'+data);
+});
+```
+
+####Charge-capture
+
+```javascript
+//capture a charge through chargeid
+var charge = new Paymentwall.Charge();
+
+charge.otherOperation(chargeid,'capture',function(data){
+  console.log('capture_data'+data);
+});
+```
+
+####Charge-void
+
+```javascript
+//void a charge through chargeid
+var charge = new Paymentwall.Charge();
+
+charge.otherOperation(chargeid,'void',function(data){
+  console.log('void_data'+data);
+});
+```
+
+####Charge-refund
+
+```javascript
+//refund a charge through chargeid
+var charge = new Paymentwall.Charge();
+
+charge.otherOperation(chargeid,'refund',function(data){
+  console.log('refund_data'+data);
+});
+```
+
+####Subscription
+
+```javascript
+//create a subscription
+var subscription = new Paymentwall.Subscription(
+0.5, //price
+'USD', //currency code
+'description', //description of the product
+'useremail@example.com', // user's email which can be gotten by req.body.email
+'fingerprint', // fingerprint which can be gotten by req.body.brick_fingerprint
+// if generated via backend please use this Charge in the callback function of createOnetimetoken
+//onetimetoken_response.token,
+// if generated via brick.js
+req.body.brick_token, //one-time token
+'day', // day/week/month/year
+3, // duration
+{
+  'trial[amount]':0.5,
+  'trial[currency]':'USD',
+  'trial[period]':'day',
+  'trial[period_duration]':3
+}// parameters for trial period
+{'custom[User_prfile_API]':'Value'} //custom parameters, if there is a trail, plan is required
+);
+
+subscription.createSubscription(function(subscription_response){
+  console.log(subscription_response);
+});
+
+```
+
+####Subscription-details
+
+```javascript
+//get the subscription details through subscriptionid
+var subscription = new Paymentwall.Subscription();
+
+subscription.otherOperation(subscriptionid,'detail',function(data){
+  console.log('subscription_data'+data);
+});
+```
+
+####Subscription-cancel
+
+```javascript
+//cancel a subscription through subscriptionid
+var subscription = new Paymentwall.Subscription();
+
+subscription.otherOperation(subscriptionid,'cancel',function(data){
+  console.log('cancel_data'+data);
+});
+```
+
+####Pingback Processing
+
+The Pingback is a webhook notifying about a payment being made. Pingbacks are sent via HTTP/HTTPS to your servers. To process pingbacks use the following code:
+
+```javascript
+var pingback = new Paymentwall.Pingback(queryData, ipAddress, true);
+if (pingback.validate()) {
+  var productId = pingback.getProduct().getId();
+  if (pingback.isDeliverable()) {
+    // deliver the product
+  } else if (pingback.isCancelable()) {
+    // withdraw the product
+  } 
+  console.log('OK'); // Paymentwall expects the string OK in response, otherwise the pingback will be resent
+} else {
+  console.log(pingback.getErrorSummary());
+}
+```
