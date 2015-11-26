@@ -8,6 +8,9 @@
     "type": "git",
     "url": "https://github.com/paymentwall/paymentwall-node.git"
   },
+  "scripts": {
+    "test": "cucumber.js"
+  },
   "bugs": {
     "url": "https://github.com/paymentwall/paymentwall-node/issues"
    },
