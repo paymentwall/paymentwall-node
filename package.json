@@ -23,7 +23,8 @@
     "bank transfer",
     "prepaid",
     "ewallet",
-    "monetization"
+    "monetization",
+    "cucumber"
   ],
   "devDependencies": {
     "cucumber": "*",
