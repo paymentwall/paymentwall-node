@@ -27,7 +27,9 @@
   ],
   "devDependencies": {
     "cucumber": "*",
-    "gherkin": "*"
+    "chai": "*",
+    "request": "*",
+    "cheerio": "*"
   },
   "license": "MIT",
   "homepage": "http://www.paymentwall.com"
