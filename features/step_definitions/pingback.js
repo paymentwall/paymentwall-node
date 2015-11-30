@@ -1,43 +1,31 @@
 
 
 module.exports = function() {
-  this.Given(/^Public key "([^"]*)"$/, function (arg1, callback) {
-    // Write code here that turns the phrase above into concrete actions
-    callback.pending();
-  });
-
-  this.Given(/^Secret key "([^"]*)"$/, function (arg1, callback) {
-    // Write code here that turns the phrase above into concrete actions
-    callback.pending();
-  });
-
-  this.Given(/^API type "([^"]*)"$/, function (arg1, callback) {
-    // Write code here that turns the phrase above into concrete actions
-    callback.pending();
-  });
 
   this.Given(/^Pingback GET parameters "([^"]*)"$/, function (arg1, callback) {
-    // Write code here that turns the phrase above into concrete actions
-    callback.pending();
+    this.queryData = arg1;
+    callback();
   });
 
   this.Given(/^Pingback IP address "([^"]*)"$/, function (arg1, callback) {
-    // Write code here that turns the phrase above into concrete actions
-    callback.pending();
+    this.ipAddress = arg1;
+    callback();
   });
 
   this.When(/^Pingback is constructed$/, function (callback) {
-    // Write code here that turns the phrase above into concrete actions
-    callback.pending();
+    this.pingback = new this.paymentwall.Pingback(this.queryData, this.ipAddress);
+    callback();
   });
 
   this.Then(/^Pingback validation result should be "([^"]*)"$/, function (arg1, callback) {
-    // Write code here that turns the phrase above into concrete actions
-    callback.pending();
+    this.pingback.validate().toString().should.equal(arg1);
+    callback();
   });
 
   this.Then(/^Pingback method "([^"]*)" should return "([^"]*)"$/, function (arg1, arg2, callback) {
-    // Write code here that turns the phrase above into concrete actions
-    callback.pending();
+    r = this.pingback[arg1]();
+    r.toString().should.equal(arg2);
+    callback();
   });
+  
 }
