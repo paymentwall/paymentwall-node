@@ -1,6 +1,6 @@
 {
   "name": "paymentwall",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "author": "Paymentwall Team <devsupport@paymentwall.com>",
   "description": "Paymentwall Node.js Library",
   "main": "./index",
