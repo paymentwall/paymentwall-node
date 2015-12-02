@@ -1,12 +1,12 @@
 var assert = require('assert');
 
 module.exports = function() {
-	this.Given(/^Public key "([^"]*)"$/, function (arg1, callback) {
-	  this.paymentwall.Base.prototype.appKey = arg1;
-	  callback();
-	});
+  this.Given(/^Public key "([^"]*)"$/, function (arg1, callback) {
+    this.paymentwall.Base.prototype.appKey = arg1;
+    callback();
+  });
 
-	this.Given(/^Private key "([^"]*)"$/, function (arg1, callback) {
+  this.Given(/^Private key "([^"]*)"$/, function (arg1, callback) {
     this.paymentwall.Base.prototype.secretKey = arg1;
     callback();
   });

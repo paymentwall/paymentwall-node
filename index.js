@@ -7,7 +7,7 @@ module.exports.Charge = require('./lib/paymentwall/charge');
 module.exports.Subscription = require('./lib/paymentwall/subscription');
 
 module.exports.configure = function(apiType, appKey, secretKey) {
-	module.exports.Base.prototype.apiType = apiType;
-	module.exports.Base.prototype.appKey = appKey;
-	module.exports.Base.prototype.secretKey = secretKey;
+  module.exports.Base.prototype.apiType = apiType;
+  module.exports.Base.prototype.appKey = appKey;
+  module.exports.Base.prototype.secretKey = secretKey;
 };
