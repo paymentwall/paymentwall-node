@@ -1,6 +1,6 @@
 # Change Log
 
-## [v1.1.0] - 2015-11-30
+## [v1.2.0] - 2015-11-30
 ### Added
 - CHANGELOG file
 - Cucumber tests
