@@ -233,7 +233,7 @@ charge.createCharge(function(brick_response){
     } else if(brick_response.isUnderReview()){          
       charge_id = brick_response.getChargeId();         //under risk review
     } else if(brick_response.isUnder3DSecure()){        
-      3D_page = brick_response.get3DHtml();             //return 3D secure page
+      return_page = brick_response.get3DHtml();             //return 3D secure page
     };
   } else{
     error_code = brick_response.getErrorCode();         //handle error
@@ -326,7 +326,7 @@ subscription.createSubscription(function(brick_response){
       subscription_id = getSubscriptionId();
       charge_id = brick_response.getChargeId();         //under risk review
     } else if(brick_response.isUnder3DSecure()){        
-      3D_page = brick_response.get3DHtml();             //return 3D secure page
+      return_page = brick_response.get3DHtml();             //return 3D secure page
     };
   } else{
     error_code = brick_response.getErrorCode();         //handle error
@@ -389,12 +389,12 @@ if (pingback.validate()) {
 
 ```javascript
 var Paymentwall = require('paymentwall');
-Paymentwall.WidgetSignature.calculateSignature(parameters,secret_key, signature_version);
+var widget_signature = Paymentwall.WidgetSignature.calculateSignature(parameters,secret_key, signature_version);
 ```
 
 ####Pingback Signature
 
 ```javascript
 var Paymentwall = require('paymentwall');
-Paymentwall.PingbackSignature.calculateSignature(parameters,secret_key, signature_version);
+var pingback_signature = Paymentwall.PingbackSignature.calculateSignature(parameters,secret_key, signature_version);
 ```
