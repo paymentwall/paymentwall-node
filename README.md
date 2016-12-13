@@ -398,5 +398,3 @@ Paymentwall.WidgetSignature.calculateSignature(parameters,secret_key, signature_
 var Paymentwall = require('paymentwall');
 Paymentwall.PingbackSignature.calculateSignature(parameters,secret_key, signature_version);
 ```
-
-

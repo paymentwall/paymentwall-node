@@ -24,6 +24,7 @@ module.exports = function() {
       };
 
       token.should.be.a('String');
+      card.should.be.a('Object');
       callback();
     });
   });
