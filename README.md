@@ -68,7 +68,7 @@ console.log(widget.getHtmlCode());
 The Pingback is a webhook notifying about a payment being made. Pingbacks are sent via HTTP/HTTPS to your servers. To process pingbacks use the following code:
 
 ```javascript
-var pingback = new Paymentwall.Pingback("queryData", "ipAddress");
+var pingback = new Paymentwall.Pingback("query data in pingback request", "ip address of pingback");
 if (pingback.validate()) {
   var productId = pingback.getProduct().getId();
   if (pingback.isDeliverable()) {
@@ -112,7 +112,7 @@ console.log(widget.getHtmlCode());
 #### Pingback Processing
 
 ```javascript
-var pingback = new Paymentwall.Pingback("queryData", "ipAddress");
+var pingback = new Paymentwall.Pingback("query data in pingback request", "ip address of pingback");
 if (pingback.validate()) {
   var virtualCurrency = pingback.getVirtualCurrencyAmount();
   if (pingback.isDeliverable()) {
@@ -159,7 +159,7 @@ console.log(widget.getHtmlCode());
 #### Pingback Processing
 
 ```javascript
-var pingback = new Paymentwall.Pingback("queryData", "ipAddress");
+var pingback = new Paymentwall.Pingback("query data in pingback request", "ip address of pingback");
 if (pingback.validate()) {
   var productId = pingback.getProduct().getId();
   if (pingback.isDeliverable()) {
@@ -367,7 +367,7 @@ subscription.otherOperation(subscriptionid,'cancel',function(response){
 The Pingback is a webhook notifying about a payment being made. Pingbacks are sent via HTTP/HTTPS to your servers. To process pingbacks use the following code:
 
 ```javascript
-var pingback = new Paymentwall.Pingback("queryData", "ipAddress", true);
+var pingback = new Paymentwall.Pingback("query data in pingback request", "ip address of pingback");
 if (pingback.validate()) {
   var productId = pingback.getProduct().getId();
   if (pingback.isDeliverable()) {
