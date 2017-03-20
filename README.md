@@ -1,16 +1,16 @@
-#About Paymentwall
+# About Paymentwall
 [Paymentwall](http://paymentwall.com/?source=gh-node) is the leading digital payments platform for globally monetizing digital goods and services. Paymentwall assists game publishers, dating sites, rewards sites, SaaS companies and many other verticals to monetize their digital content and services. 
 Merchants can plugin Paymentwall's API to accept payments from over 100 different methods including credit cards, debit cards, bank transfers, SMS/Mobile payments, prepaid cards, eWallets, landline payments and others. 
 
 To sign up for a Paymentwall Merchant Account, [click here](http://paymentwall.com/signup/merchant?source=gh-node).
 
-#Paymentwall Node.js Library
+# Paymentwall Node.js Library
 This library allows developers to use [Paymentwall APIs](http://paymentwall.com/en/documentation/API-Documentation/722?source=gh-node) (Virtual Currency, Digital Goods featuring recurring billing, and Virtual Cart).
 
 To use Paymentwall, all you need to do is to sign up for a Paymentwall Merchant Account so you can setup an Application designed for your site.
 To open your merchant account and set up an application, you can [sign up here](http://paymentwall.com/signup/merchant?source=gh-node).
 
-#Installation
+# Installation
 To install the library in your environment, simply run the following command:
 
 ```
@@ -19,13 +19,13 @@ npm install paymentwall
 
 Then use a code sample below.
 
-#Code Samples
+# Code Samples
 
-##Digital Goods API
+## Digital Goods API
 
 [Web API details](http://www.paymentwall.com/en/documentation/Digital-Goods-API/710#paymentwall_widget_call_flexible_widget_call)
 
-####Initializing Paymentwall
+#### Initializing Paymentwall
 
 ```javascript
 var Paymentwall = require('paymentwall');
@@ -36,7 +36,7 @@ Paymentwall.Configure(
 );
 ```
 
-####Widget Call
+#### Widget Call
 
 The widget is a payment page hosted by Paymentwall that embeds the entire payment flow: selecting the payment method, completing the billing details, and providing customer support via the Help section. You can redirect the users to this page or embed it via iframe. The sample code below renders an iframe with Paymentwall Widget.
 
@@ -63,7 +63,7 @@ var widget = new Paymentwall.Widget(
 console.log(widget.getHtmlCode());
 ```
 
-####Pingback Processing
+#### Pingback Processing
 
 The Pingback is a webhook notifying about a payment being made. Pingbacks are sent via HTTP/HTTPS to your servers. To process pingbacks use the following code:
 
@@ -172,11 +172,11 @@ if (pingback.validate()) {
   console.log(pingback.getErrorSummary());
 }
 ```
-##Brick API
+## Brick API
 
 [Web API details](https://www.paymentwall.com/en/documentation/Brick/2968)
 
-####Initializing Paymentwall
+#### Initializing Paymentwall
 
 ```javascript
 var Paymentwall = require('paymentwall');
@@ -187,7 +187,7 @@ Paymentwall.Configure(
 );
 ```
 
-####Create a one-time token
+#### Create a one-time token
 
 ```javascript
 var onetimetoken = new Paymentwall.Onetimetoken(
@@ -212,7 +212,7 @@ onetimetoken.createOnetimetoken(function(response){
 });
 ```
 
-####Charge
+#### Charge
 
 ```javascript
 var charge = new Paymentwall.Charge(
@@ -245,7 +245,7 @@ charge.createCharge(function(brick_response){
 });
 ```
 
-####Charge Details
+#### Charge Details
 
 ```javascript
 //get the charge details through chargeid
@@ -257,7 +257,7 @@ charge.otherOperation(chargeid,'detail',function(brick_response){
 });
 ```
 
-####Charge-capture
+#### Charge-capture
 
 ```javascript
 //capture a charge through chargeid
@@ -269,7 +269,7 @@ charge.otherOperation(chargeid,'capture',function(brick_response){
 });
 ```
 
-####Charge-void
+#### Charge-void
 
 ```javascript
 //void a charge through chargeid
@@ -281,7 +281,7 @@ charge.otherOperation(chargeid,'void',function(brick_response){
 });
 ```
 
-####Charge-refund
+#### Charge-refund
 
 ```javascript
 //refund a charge through chargeid
@@ -293,7 +293,7 @@ charge.otherOperation(chargeid,'refund',function(brick_response){
 });
 ```
 
-####Subscription
+#### Subscription
 
 ```javascript
 //create a subscription
@@ -338,7 +338,7 @@ subscription.createSubscription(function(brick_response){
 });
 ```
 
-####Subscription-details
+#### Subscription-details
 
 ```javascript
 //get the subscription details through subscriptionid
@@ -350,7 +350,7 @@ subscription.otherOperation(subscriptionid,'detail',function(response){
 });
 ```
 
-####Subscription-cancel
+#### Subscription-cancel
 
 ```javascript
 //cancel a subscription through subscriptionid
@@ -362,7 +362,7 @@ subscription.otherOperation(subscriptionid,'cancel',function(response){
 });
 ```
 
-####Pingback Processing
+#### Pingback Processing
 
 The Pingback is a webhook notifying about a payment being made. Pingbacks are sent via HTTP/HTTPS to your servers. To process pingbacks use the following code:
 
@@ -381,18 +381,18 @@ if (pingback.validate()) {
 }
 ```
 
-##Signature API
+## Signature API
 
 [Web API details](https://www.paymentwall.com/en/documentation/Signature-Calculation/2313)
 
-####Widget Signature
+#### Widget Signature
 
 ```javascript
 var Paymentwall = require('paymentwall');
 var widget_signature = Paymentwall.WidgetSignature.calculateSignature(parameters,secret_key, signature_version);
 ```
 
-####Pingback Signature
+#### Pingback Signature
 
 ```javascript
 var Paymentwall = require('paymentwall');
