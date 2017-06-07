@@ -1,6 +1,6 @@
 {
   "name": "paymentwall",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "author": "Paymentwall Team <devsupport@paymentwall.com>",
   "description": "Paymentwall Node.js Library",
   "main": "./index",
@@ -27,7 +27,7 @@
     "cucumber"
   ],
   "devDependencies": {
-    "cucumber": "*",
+    "cucumber": "1.*",
     "chai": "*",
     "request": "*",
     "cheerio": "*"

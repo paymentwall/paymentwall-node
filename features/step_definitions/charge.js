@@ -78,7 +78,7 @@ module.exports = function() {
 
     charge.createCharge(function(brick_response){
       var error_message = brick_response.getErrorDetails();
-      error_message.should.be.equal('Please contact your credit card company to approve your payment');
+      error_message.should.be.equal(arg1);
       callback();
     });
   });
