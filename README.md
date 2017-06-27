@@ -43,7 +43,7 @@ The widget is a payment page hosted by Paymentwall that embeds the entire paymen
 ```javascript
 var widget = new Paymentwall.Widget(
   'user40012',                                // id of the end-user who's making the payment
-  'fp',                                       // widget code, e.g. p1; can be picked in the Widgets section of your merchant account 
+  'pw',                                       // widget code, e.g. pw; can be picked in the Widgets section of your merchant account 
   [                                           // product details for Flexible Widget Call. 
                                               // Leave empty if product selection happens on Paymentwall's side
     new Paymentwall.Product(
