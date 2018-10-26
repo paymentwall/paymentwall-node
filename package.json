@@ -1,0 +1,37 @@
+{
+  "name": "paymentwall",
+  "version": "1.2.4",
+  "author": "Paymentwall Team <devsupport@paymentwall.com>",
+  "description": "Paymentwall Node.js Library",
+  "main": "./index",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/paymentwall/paymentwall-node.git"
+  },
+  "scripts": {
+    "test": "cucumber.js"
+  },
+  "bugs": {
+    "url": "https://github.com/paymentwall/paymentwall-node/issues"
+   },
+  "keywords": [
+    "payments",
+    "paymentwall",
+    "digital goods",
+    "credit card",
+    "sms",
+    "bank transfer",
+    "prepaid",
+    "ewallet",
+    "monetization",
+    "cucumber"
+  ],
+  "devDependencies": {
+    "cucumber": "1.*",
+    "chai": "*",
+    "request": "*",
+    "cheerio": "*"
+  },
+  "license": "MIT",
+  "homepage": "http://www.paymentwall.com"
+}
