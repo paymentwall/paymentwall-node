@@ -31,6 +31,26 @@ Scenario: check Digital Goods pingback signature v2 with correct signature and w
   Then Pingback validation result should be "false"
 
 
+Scenario: check Digital Goods pingback signature v2 with correct signature and correct new(11/2018) IP
+  Given Public key "c22f895840bf2391f67a40da64bfed26"
+  And Secret key "a7408723eaf4bfa2e3ac49b3cb695046"
+  And API type "2"
+  And Pingback GET parameters "uid=test_user&goodsid=test_product&slength=5&speriod=month&type=0&ref=t123&is_test=1&sign_version=2&sig=754cff93c0eb859f6054bef143ad253c"
+  And Pingback IP address "216.127.71.25"
+  When Pingback is constructed
+  Then Pingback validation result should be "true"
+
+
+Scenario: check Digital Goods pingback signature v2 with correct signature and wrong new(11/2018) IP
+  Given Public key "c22f895840bf2391f67a40da64bfed26"
+  And Secret key "a7408723eaf4bfa2e3ac49b3cb695046"
+  And API type "2"
+  And Pingback GET parameters "uid=test_user&goodsid=test_product&slength=5&speriod=month&type=0&ref=t123&is_test=1&sign_version=2&sig=754cff93c0eb859f6054bef143ad253c"
+  And Pingback IP address "216.127.71.256"
+  When Pingback is constructed
+  Then Pingback validation result should be "false"
+
+
 Scenario: check Digital Goods pingback signature v2 with wrong signature and correct IP
   Given Public key "c22f895840bf2391f67a40da64bfed26"
   And Secret key "a7408723eaf4bfa2e3ac49b3cb695046"
