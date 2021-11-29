@@ -1,6 +1,6 @@
 {
   "name": "paymentwall",
-  "version": "1.2.4",
+  "version": "2.0.0",
   "author": "Paymentwall Team <devsupport@paymentwall.com>",
   "description": "Paymentwall Node.js Library",
   "main": "./index",
@@ -13,7 +13,7 @@
   },
   "bugs": {
     "url": "https://github.com/paymentwall/paymentwall-node/issues"
-   },
+  },
   "keywords": [
     "payments",
     "paymentwall",
@@ -27,11 +27,14 @@
     "cucumber"
   ],
   "devDependencies": {
-    "cucumber": "1.*",
     "chai": "*",
-    "request": "*",
-    "cheerio": "*"
+    "cheerio": "*",
+    "cucumber": "1.*",
+    "request": "*"
   },
   "license": "MIT",
-  "homepage": "http://www.paymentwall.com"
+  "homepage": "http://www.paymentwall.com",
+  "dependencies": {
+    "inherits": "^2.0.4"
+  }
 }
