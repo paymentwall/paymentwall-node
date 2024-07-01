@@ -215,33 +215,44 @@ onetimetoken.createOnetimetoken(function(response){
 #### Charge
 
 ```javascript
+const data = req.body;
+let extraParams = {
+    'customer[firstname]': data.firstname,
+    'customer[lastname]': data.lastname,
+    'customer[zip]': '1000'
+};
+
+// append 3DS data
+if (data.hasOwnProperty('brick_charge_id') && data.hasOwnProperty('brick_secure_token')) {
+    extraParams = Object.assign(extraParams, {
+        charge_id: data.brick_charge_id,
+        secure_token: data.brick_secure_token,
+    })
+}
+
 var charge = new Paymentwall.Charge(
-  0.5,                                 //price
-  'USD',                               //currency code
-  'description',                       //description of the product
-  'useremail@example.com',             // user's email which can be gotten by req.body.email
-  'fingerprint',                       // fingerprint which can be gotten by req.body.brick_fingerprint
-  'onetimetoken',                      //one-time token
-  {'custom[User_prfile_API]':'Value'}  //custom parameters
+    0.5,                                 //price
+    'USD',                               //currency code
+    'description',                       //description of the product
+    data.email,             // user's email which can be gotten by req.body.email
+    data.brick_fingerprint,                       // fingerprint which can be gotten by req.body.brick_fingerprint
+    data.brick_token,                      //one-time token
+    extraParams  //custom parameters
 );
 
 charge.createCharge(function(brick_response){
-  // brick_response is a new Response Object Entity (defined in paymentwall/lib/Response/Abstract)
-  if(brick_response.isSuccessful()){
-    if(brick_response.isCaptured()){
-      charge_id = brick_response.getChargeId();         //deliver goods to user
-    } else if(brick_response.isUnderReview()){          
-      charge_id = brick_response.getChargeId();         //under risk review
-    } else if(brick_response.isUnder3DSecure()){        
-      return_page = brick_response.get3DHtml();             //return 3D secure page
-    };
-  } else{
-    error_code = brick_response.getErrorCode();         //handle error
-    error_details = brick_response.getErrorDetails();
-  };
-
-  brick_response.getFullResponse();                      // get full response content in String format
-  brick_response.getFullResponse('JSON');                // get full response content in JSON format
+    // brick_response is a new Response Object Entity (defined in paymentwall/lib/Response/Abstract)
+    if(brick_response.isSuccessful()){
+        if(brick_response.isCaptured()){
+            //deliver goods to user
+        } else if(brick_response.isUnderReview()){
+            //under risk review
+        }
+    } else{
+        const error_code = brick_response.getErrorCode();         //handle error
+        const error_details = brick_response.getErrorDetails();
+    }
+    res.json(brick_response.getBrickResponse())
 });
 ```
 

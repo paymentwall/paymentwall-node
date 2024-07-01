@@ -1,0 +1,28 @@
+
+<script src="https://api.paymentwall.com/brick/1.6/build/brick.1.6.0.min.js"> </script>
+<div id="payment-form-container"> </div>
+<script>
+    var brick = new Brick({
+        public_key: 'public_key',
+        amount: 1,
+        currency: 'USD',
+        container: 'payment-form-container',
+        action: 'http://localhost:8081/api/pay',
+        form: {
+            merchant: 'YOUR COMPANY',
+            product: 'Product Name',
+            pay_button: 'Pay',
+            show_cardholder: true,
+            show_email: true,
+            lang: 'en'
+        }
+    });
+
+    brick.showPaymentForm(function(data) {
+        // handle success
+    }, function(errors) {
+        // handle errors
+    });
+
+
+</script>
