@@ -1,3 +1,5 @@
 node_modules/
 test.js
 npm-debug.log
+.idea/
+examplen/node_modules/
