@@ -1,6 +1,5 @@
 'use strict';
 
-const axios   = require('axios');
 const cheerio = require('cheerio');
 
 module.exports = function() {
@@ -46,9 +45,10 @@ module.exports = function() {
   });
 
   this.When(/^Widget HTML content is loaded$/, function(callback) {
-    axios.get(widget.getUrl())
-      .then(response => {
-        htmlBody = response.data;
+    fetch(widget.getUrl())
+      .then(response => response.text())
+      .then(body => {
+        htmlBody = body;
         callback();
       })
       .catch(err => callback(err));
