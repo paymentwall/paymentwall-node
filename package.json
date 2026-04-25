@@ -11,6 +11,9 @@
   "scripts": {
     "test": "cucumber.js"
   },
+  "engines": {
+    "node": ">=18"
+  },
   "bugs": {
     "url": "https://github.com/paymentwall/paymentwall-node/issues"
   },
